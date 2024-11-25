@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/PS.CreativeHub.Web.styles.css" asp-append-version="true" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -36,11 +37,56 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="bg-dark text-light pt-4">
         <div class="container">
-            &copy; 2024 - PS.CreativeHub.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="row">
+                <!-- О компании -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold text-uppercase">О Creative Hub</h5>
+                    <p>
+                        Мы предоставляем профессиональные услуги тренировки петухов для побед в боях.
+                        Более 7 лет опыта и безупречная репутация.
+                    </p>
+                </div>
+
+                <!-- Полезные ссылки -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold text-uppercase">Полезные ссылки</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/" class="text-decoration-none text-light">Главная</a></li>
+                        <li><a asp-controller="Home" asp-action="Privacy" class="text-decoration-none text-light">Политика конфиденциальности</a></li>
+                        <li><a href="#contact" class="text-decoration-none text-light">Контакты</a></li>
+                        <li><a href="#blog" class="text-decoration-none text-light">Блог</a></li>
+                    </ul>
+                </div>
+
+                <!-- Соцсети -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold text-uppercase">Связаться с нами</h5>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-light" target="_blank" aria-label="Facebook">
+                            <i class="fab fa-facebook fa-lg"></i>
+                        </a>
+                        <a href="#" class="text-light" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram fa-lg"></i>
+                        </a>
+                        <a href="#" class="text-light" target="_blank" aria-label="Twitter">
+                            <i class="fab fa-twitter fa-lg"></i>
+                        </a>
+                        <a href="#" class="text-light" target="_blank" aria-label="YouTube">
+                            <i class="fab fa-youtube fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Нижняя полоса -->
+            <div class="text-center border-top pt-3 mt-3">
+                <small>&copy; 2024 - PS.CreativeHub.Web. Все права защищены.</small>
+            </div>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

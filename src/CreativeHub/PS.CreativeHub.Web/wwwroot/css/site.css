@@ -1,4 +1,4 @@
-html {
+﻿html {
   font-size: 14px;
 }
 
@@ -20,3 +20,54 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+
+
+/* styles.css */
+a:hover i {
+    transform: scale(1.2);
+    transition: transform 0.3s ease;
+}
+
+footer a:hover {
+    color: #f39c12; /* Цвет при наведении */
+    text-decoration: underline;
+}
+    footer a:hover i {
+        color: #f39c12; /* Цвет иконки при наведении */
+        transform: scale(1.2); /* Увеличение иконки при наведении */
+        transition: transform 0.3s ease, color 0.3s ease; /* Плавный эффект */
+    }
+
+footer i {
+    transition: transform 0.3s ease;
+}
+
+    footer i:hover {
+        transform: scale(1.2); /* Увеличение иконок при наведении */
+    }
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Важно для фиксирования футера */
+    display: flex;
+    flex-direction: column;
+}
+
+body > * {
+    flex: 1; /* Контент занимает оставшееся место */
+}
+
+footer {
+    flex-shrink: 0;
+    margin: 0;
+    padding: 15px 0; /* Отступы сверху и снизу */
+    border-top: 1px solid #ccc; /* Тонкая линия сверху */
+    text-align: center; /* Центрирование текста */
+}
+
+
+
+
