@@ -13,31 +13,48 @@ namespace PS.CreativeHub.Web.Controllers
             _logger = logger;
         }
 
-        // GET: Contact
         [HttpGet]
         public IActionResult Index()
         {
-            // Возвращаем страницу с формой
+            if (TempData["FormData"] != null)
+            {
+                var formData = Newtonsoft.Json.JsonConvert.DeserializeObject<ContactFormModel>((string)TempData["FormData"]);
+                ViewBag.FormData = formData;
+                TempData.Remove("FormData"); // Очистка
+            }
+
+            if (TempData["ErrorMessage"] != null)
+            {
+                ViewBag.ErrorMessage = TempData["ErrorMessage"];
+                TempData.Remove("ErrorMessage"); // Очистка
+            }
+
+            return View();
+        }
+
+
+        // GET: Contact
+        [HttpGet]
+        public IActionResult ContactForm()
+        {
             return View();
         }
 
         // POST: Contact
         [HttpPost]
-        public IActionResult Index(ContactFormModel model)
+        public IActionResult SubmitContact(ContactFormModel model)
         {
             if (ModelState.IsValid)
             {
-                // Логика обработки формы
-                // Например, сохранить данные или отправить письмо
-
-                // Можно добавить сообщение об успешной отправке
-                ViewBag.SuccessMessage = "Форма успешно отправлена!";
-                return View();
+                // Логика обработки данных
+                TempData["SuccessMessage"] = "Форма успешно отправлена!";
+                return RedirectToAction("ContactForm");
             }
 
-            // Если данные некорректны, остаёмся на той же странице с ошибками
-            return View(model);
+            // Если есть ошибки, возвращаемся к форме с ними
+            return View("ContactForm", model);
         }
+
 
         public IActionResult Privacy()
         {

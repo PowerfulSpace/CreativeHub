@@ -146,54 +146,58 @@
         </div>
     </section>
 
-    <section class="mb-5">
-        <h2 class="text-center fw-bold mb-4">Свяжитесь со мной</h2>
-        <div class="container">
-            <form method="post" action="sendContact" class="needs-validation p-4 shadow-sm rounded bg-light" novalidate>
-                <div class="row g-4">
-                    <!-- Имя -->
-                    <div class="col-md-6">
-                        <label for="name" class="form-label fw-bold">Имя:</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Ваше имя" required>
-                        <div class="invalid-feedback">Пожалуйста, введите ваше имя.</div>
-                    </div>
+<section class="mb-5">
+    <h2 class="text-center fw-bold mb-4">Свяжитесь со мной</h2>
+    <div class="container">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+        }
 
-                    <!-- Знак зодиака -->
-                    <div class="col-md-6">
-                        <label for="zodiac" class="form-label fw-bold">Кто вы по гороскопу:</label>
-                        <input type="text" class="form-control" id="zodiac" name="zodiac" placeholder="Например, Лев" required>
-                        <div class="invalid-feedback">Пожалуйста, укажите ваш знак зодиака.</div>
-                    </div>
-
-                    <!-- Телефон -->
-                    <div class="col-md-6">
-                        <label for="phone" class="form-label fw-bold">Телефон:</label>
-                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="+7 (123) 456-78-90" required>
-                        <div class="invalid-feedback">Введите корректный номер телефона.</div>
-                    </div>
-
-                    <!-- Любимое оружие -->
-                    <div class="col-md-6">
-                        <label for="weapon" class="form-label fw-bold">Ваше любимое оружие на петухе:</label>
-                        <input type="text" class="form-control" id="weapon" name="weapon" placeholder="Например, когти-лезвия" required>
-                        <div class="invalid-feedback">Пожалуйста, укажите ваше любимое оружие.</div>
-                    </div>
+        <form method="post" asp-action="SubmitContact" asp-controller="Home" class="needs-validation p-4 shadow-sm rounded bg-light" novalidate>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <label for="name" class="form-label fw-bold">Имя:</label>
+                    <input type="text" class="form-control" id="name" name="Name" value="@ViewBag.FormData?.Name" placeholder="Ваше имя" required>
+                    <div class="invalid-feedback">Пожалуйста, введите ваше имя.</div>
                 </div>
 
-                <!-- Описание тренировки -->
-                <div class="mb-4 mt-3">
-                    <label for="description" class="form-label fw-bold">Описание тренировки:</label>
-                    <textarea class="form-control" id="description" name="description" placeholder="Опишите вашу задачу или пожелания" rows="4" required></textarea>
-                    <div class="invalid-feedback">Опишите вашу задачу или пожелания.</div>
+                <div class="col-md-6">
+                    <label for="zodiac" class="form-label fw-bold">Кто вы по гороскопу:</label>
+                    <input type="text" class="form-control" id="zodiac" name="Zodiac" value="@ViewBag.FormData?.Zodiac" placeholder="Например, Лев" required>
+                    <div class="invalid-feedback">Пожалуйста, укажите ваш знак зодиака.</div>
                 </div>
 
-                <!-- Кнопка отправки -->
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-lg px-5">Отправить</button>
+                <div class="col-md-6">
+                    <label for="phone" class="form-label fw-bold">Телефон:</label>
+                    <input type="tel" class="form-control" id="phone" name="Phone" value="@ViewBag.FormData?.Phone" placeholder="+7 (123) 456-78-90" required>
+                    <div class="invalid-feedback">Введите корректный номер телефона.</div>
                 </div>
-            </form>
-        </div>
-    </section>
+
+                <div class="col-md-6">
+                    <label for="weapon" class="form-label fw-bold">Ваше любимое оружие на петухе:</label>
+                    <input type="text" class="form-control" id="weapon" name="Weapon" value="@ViewBag.FormData?.Weapon" placeholder="Например, когти-лезвия" required>
+                    <div class="invalid-feedback">Пожалуйста, укажите ваше любимое оружие.</div>
+                </div>
+            </div>
+
+            <div class="mb-4 mt-3">
+                <label for="description" class="form-label fw-bold">Описание тренировки:</label>
+                <textarea class="form-control" id="description" name="Description" placeholder="Опишите вашу задачу или пожелания" rows="4" required>@ViewBag.FormData?.Description</textarea>
+                <div class="invalid-feedback">Опишите вашу задачу или пожелания.</div>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary btn-lg px-5" id="submitBtn">Отправить</button>
+            </div>
+        </form>
+    </div>
+</section>
+
 
 
     <section class="text-center mb-5">
@@ -220,3 +224,12 @@
     </section>
 
 </div>
+
+
+@section Scripts{
+
+    document.querySelector('form').addEventListener('submit', function () {
+    document.getElementById('submitBtn').disabled = true;
+});
+
+}
