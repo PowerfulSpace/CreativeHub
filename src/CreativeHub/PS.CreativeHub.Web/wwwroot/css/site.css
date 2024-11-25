@@ -96,3 +96,71 @@ button.btn-primary {
     button.btn-primary:hover {
         background-color: #0056b3;
     }
+
+
+/* Общие стили для шапки */
+.navbar {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Элегантная тень */
+    transition: background-color 0.3s ease; /* Плавное изменение фона */
+}
+
+/* Логотип / Название */
+.navbar-brand {
+    font-size: 1.5rem; /* Увеличенный шрифт */
+    color: #f39c12; /* Акцентный цвет */
+    transition: color 0.3s ease;
+}
+
+    .navbar-brand:hover {
+        color: #fff; /* Белый цвет при наведении */
+    }
+
+/* Навигационные ссылки */
+.navbar-nav .nav-link {
+    font-size: 1rem;
+    color: #ccc; /* Нейтральный цвет */
+    margin-right: 15px;
+    transition: color 0.3s ease, background-color 0.3s ease; /* Плавный переход */
+    padding: 8px 15px; /* Увеличенные кликабельные зоны */
+}
+
+    .navbar-nav .nav-link.active,
+    .navbar-nav .nav-link:hover {
+        color: #fff; /* Белый цвет текста при наведении */
+        background-color: #f39c12; /* Оранжевый фон при наведении */
+        border-radius: 5px; /* Закруглённые края */
+    }
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+    .navbar-nav {
+        text-align: center;
+    }
+
+        .navbar-nav .nav-link {
+            margin-bottom: 10px; /* Отступы между ссылками */
+        }
+}
+
+
+
+/* Логотип */
+.logo-img {
+    height: 40px; /* Устанавливаем высоту логотипа */
+    width: auto; /* Сохраняем пропорции */
+    transition: transform 0.3s ease; /* Анимация при наведении */
+}
+
+    .logo-img:hover {
+        transform: scale(1.1); /* Увеличение логотипа при наведении */
+    }
+
+/* Название бренда рядом с логотипом */
+.navbar-brand span {
+    font-size: 1.5rem;
+    color: #f39c12;
+}
+
+.navbar-brand:hover span {
+    color: #fff; /* Изменение цвета текста при наведении */
+}
