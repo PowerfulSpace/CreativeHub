@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PS.CreativeHub.Web.Models;
 using System.Diagnostics;
 
@@ -13,9 +13,30 @@ namespace PS.CreativeHub.Web.Controllers
             _logger = logger;
         }
 
+        // GET: Contact
+        [HttpGet]
         public IActionResult Index()
         {
+            // Возвращаем страницу с формой
             return View();
+        }
+
+        // POST: Contact
+        [HttpPost]
+        public IActionResult Index(ContactFormModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Логика обработки формы
+                // Например, сохранить данные или отправить письмо
+
+                // Можно добавить сообщение об успешной отправке
+                ViewBag.SuccessMessage = "Форма успешно отправлена!";
+                return View();
+            }
+
+            // Если данные некорректны, остаёмся на той же странице с ошибками
+            return View(model);
         }
 
         public IActionResult Privacy()
@@ -29,4 +50,7 @@ namespace PS.CreativeHub.Web.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
+
+
+   
 }
