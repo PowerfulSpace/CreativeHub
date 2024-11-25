@@ -70,4 +70,29 @@ footer {
 
 
 
+/* Стили для текста */
+h1 span.text-primary {
+    text-decoration: underline; /* Подчёркивание ключевых слов */
+}
 
+/* Анимация для изображения */
+.animate-img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .animate-img:hover {
+        transform: scale(1.05); /* Лёгкое увеличение при наведении */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Глубокая тень */
+    }
+
+/* Кнопка */
+button.btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+    button.btn-primary:hover {
+        background-color: #0056b3;
+    }
