@@ -1,6 +1,13 @@
+﻿using Microsoft.EntityFrameworkCore;
+using PS.CreativeHub.Web.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+
+// Добавляем контекст базы данных SQLite
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
