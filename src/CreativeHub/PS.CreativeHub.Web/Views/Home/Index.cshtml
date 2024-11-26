@@ -3,213 +3,27 @@
     ViewData["Title"] = "Creative Hub - Главная";
 }
 
-
-
+   
 <div class="container my-5">
     <!-- Приветственный блок -->
-    <div class="text-center mb-5">
-        <h1 class="display-4 fw-bold">
-            Добро пожаловать в <span class="text-primary">Острый коготь</span>
-        </h1>
-        <p class="lead text-muted">
-            Специалист по петушиным боям с опытом более 7 лет
-        </p>
-    </div>
-
+    @await Html.PartialAsync("Index_Partial/_Welcome")
+    
     <!-- Блок "Обо мне" -->
-    <section class="mb-5">
-        <div class="row align-items-center">
-            <!-- Текстовая часть -->
-            <div class="col-lg-6 mb-4 mb-lg-0">
-                <h2 class="fw-bold">Обо мне</h2>
-                <p class="text-muted">
-                    Hello! Я Брэд Питт, профессионал в мире петушиных боев. У меня более 7.5 лет опыта, а также страсть к животным. Каждый год я стабильно посещаю зоопарк и совершенствую свои навыки.
-                    Я помогу вашему петуху достичь высот и стать настоящим чемпионом!
-                </p>
-                <button class="btn btn-primary btn-lg mt-3">
-                    Узнать больше
-                </button>
-            </div>
-            <!-- Изображение -->
-            <div class="col-lg-6 text-center">
-                <img src="~/images/portfolio.jpg" alt="Портфолио" class="img-fluid rounded shadow-lg animate-img">
-            </div>
-        </div>
-    </section>
-</div>
+    @await Html.PartialAsync("Index_Partial/_AboutMe")
 
-    <section class="mb-5">
-        <h2 class="text-center fw-bold mb-4">Мои работы</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <img src="~/images/work1.jpg" alt="Проект 1" class="img-fluid rounded shadow">
-            </div>
-            <div class="col-md-4">
-                <img src="~/images/work2.jpg" alt="Проект 2" class="img-fluid rounded shadow">
-            </div>
-            <div class="col-md-4">
-                <img src="~/images/work3.jpg" alt="Проект 3" class="img-fluid rounded shadow">
-            </div>
-        </div>
-        <section class="mb-5">
-            <h2 class="text-center fw-bold mb-4">Отзывы клиентов</h2>
-            <div class="row g-4">
-                <!-- Первый отзыв -->
-                <div class="col-md-6">
-                    <div class="card p-3 shadow-sm">
-                        <div class="d-flex align-items-start">
-                            <img src="~/images/client1.jpg" alt="Иван Иванов" class="rounded-circle me-3" style="width: 60px; height: 60px;">
-                            <div>
-                                <h5 class="mb-1">Полинка</h5>
-                                <div class="text-warning">
-                                    ★★★★★
-                                </div>
-                            </div>
-                        </div>
-                        <p class="mt-3 text-muted">“Бред - настоящий профессионал! Мой петух стал чемпионом!”</p>
-                    </div>
-                </div>
+    <!-- Мои работы -->
+    @await Html.PartialAsync("Index_Partial/_MyWorks")
 
-                <!-- Второй отзыв -->
-                <div class="col-md-6">
-                    <div class="card p-3 shadow-sm">
-                        <div class="d-flex align-items-start">
-                            <img src="~/images/client2.jpg" alt="Мария Петрова" class="rounded-circle me-3" style="width: 60px; height: 60px;">
-                            <div>
-                                <h5 class="mb-1">Павел</h5>
-                                <div class="text-warning">
-                                    ★★★★★
-                                </div>
-                            </div>
-                        </div>
-                        <p class="mt-3 text-muted">“Отличная работа! Петух в полном порядке.”</p>
-                    </div>
-                </div>
+    <!-- Отзывы клиентов -->
+    @await Html.PartialAsync("Index_Partial/_Testimonials")
 
-                <!-- Третий отзыв (пример для добавления) -->
-                <div class="col-md-6">
-                    <div class="card p-3 shadow-sm">
-                        <div class="d-flex align-items-start">
-                            <img src="~/images/client3.jpg" alt="Анна Смирнова" class="rounded-circle me-3" style="width: 60px; height: 60px;">
-                            <div>
-                                <h5 class="mb-1">Ифанасий</h5>
-                                <div class="text-warning">
-                                    ★★★★☆
-                                </div>
-                            </div>
-                        </div>
-                        <p class="mt-3 text-muted">“Очень доволен сотрудничеством! Будем работать еще.”</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- Блог -->
+    @await Html.PartialAsync("Index_Partial/_Blog")
 
-    </section>
+    <!-- Свяжитесь со мной -->
+    @await Html.PartialAsync("Index_Partial/_Contact", Model)
 
-    <section class="mb-5">
-        <h2 class="text-center fw-bold mb-4">Блог</h2>
-        <div class="row g-4">
-            <!-- Первый пост -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card h-100 shadow-sm">
-                    <img src="~/images/blog1.jpg" alt="Как подготовить петуха к бою" class="card-img-top" style="height: 200px; object-fit: cover;">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Как подготовить петуха к бою</h5>
-                        <p class="card-text text-muted">Пошаговая инструкция по тренировке вашего чемпиона. Узнайте секреты профессионалов!</p>
-                        <a href="#" class="btn btn-primary mt-auto">Читать далее</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Второй пост -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card h-100 shadow-sm">
-                    <img src="~/images/blog2.jpg" alt="Лучшие методы тренировки" class="card-img-top" style="height: 200px; object-fit: cover;">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Лучшие методы тренировки</h5>
-                        <p class="card-text text-muted">Топ-5 методов тренировки для достижения максимальных результатов.</p>
-                        <a href="#" class="btn btn-primary mt-auto">Читать далее</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Третий пост -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card h-100 shadow-sm">
-                    <img src="~/images/blog3.jpg" alt="Питание для боевых петухов" class="card-img-top" style="height: 200px; object-fit: cover;">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Питание для боевых петухов</h5>
-                        <p class="card-text text-muted">Как обеспечить вашему бойцу идеальный рацион для побед.</p>
-                        <a href="#" class="btn btn-primary mt-auto">Читать далее</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-<section class="mb-5">
-    <h2 class="text-center fw-bold mb-4">Свяжитесь со мной</h2>
-    <div class="container">
-        @if (TempData["SuccessMessage"] != null)
-        {
-            <div class="alert alert-success">@TempData["SuccessMessage"]</div>
-        }
-        @if (TempData["ErrorMessage"] != null)
-        {
-            <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
-        }
-
-        <div class="container mt-5">
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6">
-                    <div class="card shadow-lg p-4">
-                        <h3 class="card-title text-center mb-4">Свяжитесь с нами</h3>
-
-                        <form asp-action="Contact" method="post" id="contactForm">
-                            <div class="row mb-3">
-                                <div class="form-group col-md-6 text-center">
-                                    <input asp-for="Name" class="form-control" placeholder="Ваше имя" />
-                                    <span asp-validation-for="Name" class="text-danger"></span>
-                                </div>
-
-                                <div class="form-group col-md-6 text-center">
-                                    <input asp-for="Zodiac" class="form-control" placeholder="Ваш знак зодиака" />
-                                    <span asp-validation-for="Zodiac" class="text-danger"></span>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <div class="form-group col-md-6 text-center">
-                                    <input asp-for="Phone" class="form-control" placeholder="+375 XX XXX-XX-XX" />
-                                    <span asp-validation-for="Phone" class="text-danger"></span>
-                                </div>
-
-                                <div class="form-group col-md-6 text-center">
-                                    <input asp-for="Weapon" class="form-control" placeholder="любимое оружие питуха" />
-                                    <span asp-validation-for="Weapon" class="text-danger"></span>
-                                </div>
-                            </div>
-
-                            <div class="form-group mb-3 text-center">
-                                <textarea asp-for="Description" class="form-control" rows="4" placeholder="Опишите вашу задачу или пожелания"></textarea>
-                                <span asp-validation-for="Description" class="text-danger"></span>
-                            </div>
-
-                            <div class="text-center mt-3">
-                                <button type="submit" class="btn btn-primary">Отправить</button>
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-
-
+    <!-- Социальные сети -->
     <section class="text-center mb-5">
         <h2 class="fw-bold mb-4">Следите за мной</h2>
         <p class="text-muted">Присоединяйтесь к моим соцсетям и следите за новостями!</p>
@@ -232,10 +46,7 @@
             </a>
         </div>
     </section>
-
 </div>
-
-
 
 @section Scripts {
     @{

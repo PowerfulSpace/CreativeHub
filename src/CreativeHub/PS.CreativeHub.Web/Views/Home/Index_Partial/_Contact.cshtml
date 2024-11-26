@@ -1,0 +1,54 @@
+﻿@model ContactFormModel
+
+<section class="mb-5">
+    <h2 class="text-center fw-bold mb-4">Свяжитесь со мной</h2>
+    <div class="container">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+        }
+
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="card shadow-lg p-4">
+                        <h3 class="card-title text-center mb-4">Свяжитесь с нами</h3>
+                        <form asp-action="Contact" method="post" id="contactForm">
+                            <div class="row mb-3">
+                                <div class="form-group col-md-6 text-center">
+                                    <input asp-for="Name" class="form-control" placeholder="Ваше имя" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-6 text-center">
+                                    <input asp-for="Zodiac" class="form-control" placeholder="Ваш знак зодиака" />
+                                    <span asp-validation-for="Zodiac" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="form-group col-md-6 text-center">
+                                    <input asp-for="Phone" class="form-control" placeholder="+375 XX XXX-XX-XX" />
+                                    <span asp-validation-for="Phone" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-6 text-center">
+                                    <input asp-for="Weapon" class="form-control" placeholder="любимое оружие петуха" />
+                                    <span asp-validation-for="Weapon" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group mb-3 text-center">
+                                <textarea asp-for="Description" class="form-control" rows="4" placeholder="Опишите вашу задачу или пожелания"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                            <div class="text-center mt-3">
+                                <button type="submit" class="btn btn-primary">Отправить</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
