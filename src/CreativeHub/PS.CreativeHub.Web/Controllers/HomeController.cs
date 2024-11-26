@@ -16,43 +16,39 @@ namespace PS.CreativeHub.Web.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            if (TempData["FormData"] != null)
-            {
-                var formData = Newtonsoft.Json.JsonConvert.DeserializeObject<ContactFormModel>((string)TempData["FormData"]);
-                ViewBag.FormData = formData;
-                TempData.Remove("FormData"); // Очистка
-            }
-
-            if (TempData["ErrorMessage"] != null)
-            {
-                ViewBag.ErrorMessage = TempData["ErrorMessage"];
-                TempData.Remove("ErrorMessage"); // Очистка
-            }
-
             return View();
         }
 
 
-        // GET: Contact
-        [HttpGet]
-        public IActionResult ContactForm()
+        // Отображение страницы с формой
+        public IActionResult Contact()
         {
             return View();
         }
 
-        // POST: Contact
+        // Метод для обработки формы связи
         [HttpPost]
-        public IActionResult SubmitContact(ContactFormModel model)
+        [ValidateAntiForgeryToken] // Защита от CSRF атак
+        public async Task<IActionResult> Contact(ContactFormModel model)
         {
             if (ModelState.IsValid)
             {
-                // Логика обработки данных
-                TempData["SuccessMessage"] = "Форма успешно отправлена!";
-                return RedirectToAction("ContactForm");
+                // Здесь можно обработать данные, например, сохранить их в базе данных
+                // Или отправить email с данными формы, например, через сервис отправки email
+
+                // После успешной обработки данных, можно перенаправить пользователя на страницу с благодарностью
+                return RedirectToAction("ThankYou");
             }
 
-            // Если есть ошибки, возвращаемся к форме с ними
-            return View("ContactForm", model);
+            // Если данные формы не прошли валидацию, то возвращаем форму с ошибками
+            ViewBag.Anchor = "contactForm"; // Передаем якорь через ViewBag
+            return View("Index", model);   // Возвращаем модель с представлением Index
+        }
+
+        // Страница благодарности после отправки формы
+        public IActionResult ThankYou()
+        {
+            return View();
         }
 
 

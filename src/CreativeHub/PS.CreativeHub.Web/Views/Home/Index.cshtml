@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ContactFormModel
+@{
     ViewData["Title"] = "Creative Hub - Главная";
 }
 
@@ -158,43 +159,51 @@
             <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
         }
 
-        <form method="post" asp-action="SubmitContact" asp-controller="Home" class="needs-validation p-4 shadow-sm rounded bg-light" novalidate>
-            <div class="row g-4">
-                <div class="col-md-6">
-                    <label for="name" class="form-label fw-bold">Имя:</label>
-                    <input type="text" class="form-control" id="name" name="Name" value="@ViewBag.FormData?.Name" placeholder="Ваше имя" required>
-                    <div class="invalid-feedback">Пожалуйста, введите ваше имя.</div>
-                </div>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="card shadow-lg p-4">
+                        <h3 class="card-title text-center mb-4">Свяжитесь с нами</h3>
+                        <form asp-action="Contact" method="post" id="contactForm">
+                            <div class="row mb-3">
+                                <div class="form-group col-md-6 text-center">
+                                    <input asp-for="Name" class="form-control" placeholder="Ваше имя" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
 
-                <div class="col-md-6">
-                    <label for="zodiac" class="form-label fw-bold">Кто вы по гороскопу:</label>
-                    <input type="text" class="form-control" id="zodiac" name="Zodiac" value="@ViewBag.FormData?.Zodiac" placeholder="Например, Лев" required>
-                    <div class="invalid-feedback">Пожалуйста, укажите ваш знак зодиака.</div>
-                </div>
+                                <div class="form-group col-md-6 text-center">
+                                    <input asp-for="Zodiac" class="form-control" placeholder="Ваш знак зодиака" />
+                                    <span asp-validation-for="Zodiac" class="text-danger"></span>
+                                </div>
+                            </div>
 
-                <div class="col-md-6">
-                    <label for="phone" class="form-label fw-bold">Телефон:</label>
-                    <input type="tel" class="form-control" id="phone" name="Phone" value="@ViewBag.FormData?.Phone" placeholder="+7 (123) 456-78-90" required>
-                    <div class="invalid-feedback">Введите корректный номер телефона.</div>
-                </div>
+                            <div class="row mb-3">
+                                <div class="form-group col-md-6 text-center">
+                                    <input asp-for="Phone" class="form-control" placeholder="+375 XX XXX-XX-XX" />
+                                    <span asp-validation-for="Phone" class="text-danger"></span>
+                                </div>
 
-                <div class="col-md-6">
-                    <label for="weapon" class="form-label fw-bold">Ваше любимое оружие на петухе:</label>
-                    <input type="text" class="form-control" id="weapon" name="Weapon" value="@ViewBag.FormData?.Weapon" placeholder="Например, когти-лезвия" required>
-                    <div class="invalid-feedback">Пожалуйста, укажите ваше любимое оружие.</div>
+                                <div class="form-group col-md-6 text-center">
+                                    <input asp-for="Weapon" class="form-control" placeholder="любимое оружие питуха" />
+                                    <span asp-validation-for="Weapon" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-3 text-center">
+                                <textarea asp-for="Description" class="form-control" rows="4" placeholder="Опишите вашу задачу или пожелания"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+
+                            <div class="text-center mt-3">
+                                <button type="submit" class="btn btn-primary">Отправить</button>
+                            </div>
+                        </form>
+
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="mb-4 mt-3">
-                <label for="description" class="form-label fw-bold">Описание тренировки:</label>
-                <textarea class="form-control" id="description" name="Description" placeholder="Опишите вашу задачу или пожелания" rows="4" required>@ViewBag.FormData?.Description</textarea>
-                <div class="invalid-feedback">Опишите вашу задачу или пожелания.</div>
-            </div>
-
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary btn-lg px-5" id="submitBtn">Отправить</button>
-            </div>
-        </form>
     </div>
 </section>
 
@@ -226,10 +235,16 @@
 </div>
 
 
-@section Scripts{
 
-    document.querySelector('form').addEventListener('submit', function () {
-    document.getElementById('submitBtn').disabled = true;
-});
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
 
+@if (ViewBag.Anchor != null)
+{
+    <script>
+        document.getElementById('@ViewBag.Anchor').scrollIntoView({ behavior: "smooth" });
+    </script>
 }
