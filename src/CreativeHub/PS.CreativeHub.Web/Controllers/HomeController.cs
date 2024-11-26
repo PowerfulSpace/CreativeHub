@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PS.CreativeHub.Web.Data;
 using PS.CreativeHub.Web.Models;
 using System.Diagnostics;
 
@@ -6,11 +7,14 @@ namespace PS.CreativeHub.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ApplicationDbContext _context;
+
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         [HttpGet]
@@ -33,14 +37,24 @@ namespace PS.CreativeHub.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Здесь можно обработать данные, например, сохранить их в базе данных
-                // Или отправить email с данными формы, например, через сервис отправки email
+                // Сохраняем данные формы в базу данных
+                var contactEntry = new ContactFormEntry
+                {
+                    Name = model.Name,
+                    Zodiac = model.Zodiac,
+                    Phone = model.Phone,
+                    Weapon = model.Weapon,
+                    Description = model.Description
+                };
 
-                // После успешной обработки данных, можно перенаправить пользователя на страницу с благодарностью
+                _context.ContactFormEntries.Add(contactEntry);
+                await _context.SaveChangesAsync(); // Сохраняем изменения в базе данных
+
+                // После успешного сохранения, перенаправляем на страницу благодарности
                 return RedirectToAction("ThankYou");
             }
 
-            // Если данные формы не прошли валидацию, то возвращаем форму с ошибками
+            // Если данные формы не прошли валидацию, возвращаем форму с ошибками
             ViewBag.Anchor = "contactForm"; // Передаем якорь через ViewBag
             return View("Index", model);   // Возвращаем модель с представлением Index
         }
