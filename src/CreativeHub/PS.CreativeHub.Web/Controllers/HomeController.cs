@@ -24,12 +24,6 @@ namespace PS.CreativeHub.Web.Controllers
         }
 
 
-        // Отображение страницы с формой
-        public IActionResult Contact()
-        {
-            return View();
-        }
-
         // Метод для обработки формы связи
         [HttpPost]
         [ValidateAntiForgeryToken] // Защита от CSRF атак
@@ -38,14 +32,8 @@ namespace PS.CreativeHub.Web.Controllers
             if (ModelState.IsValid)
             {
                 // Сохраняем данные формы в базу данных
-                var contactEntry = new ContactFormEntry
-                {
-                    Name = model.Name,
-                    Zodiac = model.Zodiac,
-                    Phone = model.Phone,
-                    Weapon = model.Weapon,
-                    Description = model.Description
-                };
+
+                var contactEntry = MapToContactFormEntry(model);
 
                 _context.ContactFormEntries.Add(contactEntry);
                 await _context.SaveChangesAsync(); // Сохраняем изменения в базе данных
@@ -76,5 +64,20 @@ namespace PS.CreativeHub.Web.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+
+        private ContactFormEntry MapToContactFormEntry(ContactFormModel model)
+        {
+            return new ContactFormEntry
+            {
+                Name = model.Name,
+                Zodiac = model.Zodiac,
+                Phone = model.Phone,
+                Weapon = model.Weapon,
+                Description = model.Description
+            };
+        }
+
     }
 }

@@ -14,40 +14,35 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
             <div class="container-fluid">
                 <!-- Логотип с названием бренда -->
-                <a class="navbar-brand d-flex align-items-center" href="#">
+                <a asp-controller="Home" asp-action="Index" class="navbar-brand d-flex align-items-center">
                     <img src="~/images/logo.jpg" alt="Логотип" class="me-2 logo-img" />
                     <span class="fw-bold text-uppercase">PS.CreativeHub.Web</span>
                 </a>
                 <!-- Кнопка для мобильного меню -->
-                <button class="navbar-toggler"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarNav"
-                        aria-controls="navbarNav"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <!-- Основная навигация -->
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">Home</a>
+                            <a asp-controller="Home" asp-action="Index" class="nav-link active">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
+                            <a asp-controller="Home" asp-action="About" class="nav-link">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Services</a>
+                            <a asp-controller="Home" asp-action="Services" class="nav-link">Services</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                            <a asp-controller="Home" asp-action="Contact" class="nav-link">Contact</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
